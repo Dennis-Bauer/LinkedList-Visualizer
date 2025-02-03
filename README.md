@@ -113,3 +113,8 @@ Returns `true` if the list is **empty**.
 ---
 
 This **Linked List Visualization** provides an intuitive way to understand and test the behavior of a **linked list**.
+
+# **Example Pictures (Beispiel Bilder)**  
+<img width="790" alt="List_normalView" src="https://github.com/user-attachments/assets/226676b7-6cba-4af7-be69-1b58dfbfd6a8" />
+<img width="790" alt="List_CreateNewListView" src="https://github.com/user-attachments/assets/baa75520-8557-4167-ab63-bbdd86b9a1c1" />
+<img width="789" alt="List_1Element_Current-Null_IsEmpty-False" src="https://github.com/user-attachments/assets/f238c367-aa5a-45f6-a9e9-9f870789129a" />
