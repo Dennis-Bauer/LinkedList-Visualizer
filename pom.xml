@@ -61,7 +61,7 @@
                     <execution>
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>de.dennis.llvisualizer.Main</mainClass>
+                            <mainClass>de.dennis.llvisualizer.App</mainClass>
                         </configuration>
                     </execution>
                 </executions>
@@ -75,7 +75,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>de.dennis.llvisualizer.Main</mainClass>
+                            <mainClass>de.dennis.llvisualizer.App</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -95,7 +95,7 @@
                         <configuration>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>de.dennis.llvisualizer.Main</mainClass>
+                                    <mainClass>de.dennis.llvisualizer.App</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
