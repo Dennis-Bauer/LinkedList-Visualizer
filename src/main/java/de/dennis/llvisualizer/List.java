@@ -96,6 +96,8 @@ public class List extends ScrollPane {
                     last.getGraphicObject().setPosArrowToLast();
                     last.getGraphicObject().setPosArrowVisible(true);
 
+                    current = null;
+
                     LIST_VIEW.removeNode(currentPos + 1);
                 } else {
                     previous.setNext(current.getNext());
@@ -109,10 +111,22 @@ public class List extends ScrollPane {
             } else {
                 first = first.getNext();
 
-                first.getGraphicObject().setPosArrowVisible(true);
-                first.getGraphicObject().setPosArrowToFirst();
+                if (first != null) {
+                    first.getGraphicObject().setPosArrowVisible(true);
+                    first.getGraphicObject().setPosArrowToFirst();
 
-                LIST_VIEW.removeNode(1);
+                    current = current.getNext();
+                    if (current != null) current.getGraphicObject().setCurrentArrowVisible(true);
+
+                    LIST_VIEW.removeNode(1);
+                } else {
+                    LIST_VIEW.removeNode(1);
+
+                    current = null;
+                    first = null;
+                    last = null;
+                }
+
             }
         }
     }
