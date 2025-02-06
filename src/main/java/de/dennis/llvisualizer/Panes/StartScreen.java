@@ -33,11 +33,11 @@ public class StartScreen extends Pane {
     private void showCreateMenu() {
         getChildren().clear();
 
-        Button createListWithElement = buildButton("createListButton_WithElement", buildLongText("Erstelle List mit Element", "public List(ListElement firstElement)"), BUTTON_WIDTH * 1.25, Main.WINDOW_HEIGHT * 0.25, Font.font(Main.TEXT_FONT, FontWeight.BOLD, Main.FONT_SIZE) , BUTTON_X - (BUTTON_WIDTH * 0.25) / 2, Main.WINDOW_HEIGHT * 0.2);
+        Button createListWithElement = buildButton("createListButton_WithElement", buildLongText("Erstelle Linked-List mit Element", "public LinkedList(ListElement firstElement)"), BUTTON_WIDTH * 1.25, Main.WINDOW_HEIGHT * 0.25, Font.font(Main.TEXT_FONT, FontWeight.BOLD, Main.FONT_SIZE) , BUTTON_X - (BUTTON_WIDTH * 0.25) / 2, Main.WINDOW_HEIGHT * 0.2);
         createListWithElement.setTextAlignment(TextAlignment.CENTER);
         createListWithElement.setOnMouseClicked(_ -> createListWithElement());
 
-        Button createListWithOutElement = buildButton("createListButton_WithOutElement", buildLongText("Erstelle List ohne Element", "public List()"), BUTTON_WIDTH, Main.WINDOW_HEIGHT * 0.25, Font.font(Main.TEXT_FONT, FontWeight.BOLD, Main.FONT_SIZE) , BUTTON_X, Main.WINDOW_HEIGHT * 0.5);
+        Button createListWithOutElement = buildButton("createListButton_WithOutElement", buildLongText("Erstelle Linked-List ohne Element", "public LinkedList()"), BUTTON_WIDTH, Main.WINDOW_HEIGHT * 0.25, Font.font(Main.TEXT_FONT, FontWeight.BOLD, Main.FONT_SIZE) , BUTTON_X, Main.WINDOW_HEIGHT * 0.5);
         createListWithOutElement.setTextAlignment(TextAlignment.CENTER);
         createListWithOutElement.setOnMouseClicked(_ -> createList());
 

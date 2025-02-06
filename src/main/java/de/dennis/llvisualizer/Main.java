@@ -48,7 +48,7 @@ public class Main extends Application {
 
     }
 
-    private static List primaryList;
+    private static LinkedList primaryList;
 
     public static void createPreList() {
         createListView(2, true);
@@ -59,8 +59,8 @@ public class Main extends Application {
 
     public static void createListView(int i, boolean createWithElement) {
 
-        if (createWithElement) primaryList = new List(new ListElement(i));
-        else primaryList = new List();
+        if (createWithElement) primaryList = new LinkedList(new ListElement(i));
+        else primaryList = new LinkedList();
 
         // Input Box
         VBox inputBoxPane = new VBox();

@@ -4,7 +4,7 @@ import de.dennis.llvisualizer.Panes.ListView;
 import javafx.scene.control.ScrollPane;
 
 
-public class List extends ScrollPane {
+public class LinkedList extends ScrollPane {
 
     private final ListView LIST_VIEW = new ListView();
 
@@ -15,13 +15,13 @@ public class List extends ScrollPane {
     private ListElement current;
     private ListElement last;
 
-    public List(ListElement firstElement) {
+    public LinkedList(ListElement firstElement) {
         setContent(LIST_VIEW);
 
         addFirstElement(firstElement);
     }
 
-    public List() {
+    public LinkedList() {
         setContent(LIST_VIEW);
 
         setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
