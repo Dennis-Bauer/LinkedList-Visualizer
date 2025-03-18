@@ -4,9 +4,9 @@ Ein Visualisierungstool für verkettete Listen, programmiert in **Java** mit **J
 
 ## **Funktionen**  
 
-- **Anzeige vom Current Zeiger**: Es wird nur der Knoten sichtbar gemacht, auf denen der Zeiger Current steht.  
+- **Anzeige vom Current-Zeiger**: Es wird nur der Knoten sichtbar gemacht, auf dem der Zeiger Current steht.  
 - **Visualisierung der Zeiger**: Es werden die drei Zeiger (**Current**, **First**, **Last**) gezeigt.
-- **Keine sichtbaren Werte in den Nodes**: Werte, beim Current-zeiger, werden erst vollständig sichtbar, wenn `getContent()` aufgerufen wird.  
+- **Keine sichtbaren Werte in den Nodes**: Werte beim Current-Zeiger werden erst vollständig sichtbar, wenn `getContent()` aufgerufen wird.  
 - **Voreingestellte Test-Liste**: Eine vorgefertigte Liste kann genutzt und bearbeitet werden.  
 - **Erstellung neuer Listen**:  
   - Leere Liste  
