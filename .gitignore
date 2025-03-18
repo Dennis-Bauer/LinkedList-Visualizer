@@ -2,6 +2,9 @@
 *.class
 *.DS_Store
 
+# Folder
+/target
+
 # Log file
 *.log
 
