@@ -3,7 +3,9 @@
 *.DS_Store
 
 # Folder
-/target
+target/
+
+*.xml
 
 # Log file
 *.log
