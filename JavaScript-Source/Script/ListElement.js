@@ -21,7 +21,7 @@ export class ListElement {
     } else throw new ContentTypError();
   }
 
-  addPointer(pointerName) {
+  setPointer(pointerName) {
     if (this.divElement !== undefined) {
       this.divElement.querySelector(".pointer").textContent = pointerName;
     }

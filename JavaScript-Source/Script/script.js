@@ -3,38 +3,35 @@
 import { LinkedList } from "./LinkedList.js";
 import { ListElement } from "./ListElement.js";
 
-const currentPointerHtml = `<div class="pointer">Current</div>`;
-const firstPointerHtml = `<div class="pointer">First</div>`;
-const lastPointerHtml = `<div class="pointer">Last</div>`;
-const arrow = `<div class="arrow">→</div>`;
-
 const listContainer = document.getElementsByClassName("list-container")[0];
 const currentLabel = document.getElementById("current-null");
 const outputLabel = document.getElementById("output");
 
-//listContainer.insertAdjacentHTML("beforeend", arrow);
-
-const e = new ListElement(2);
+const mainLinkedList = new LinkedList(listContainer);
 
 // Buttons
 document.getElementById("button-next").addEventListener("click", function () {
-  console.log("Button Click");
+  currentLabel.textContent = mainLinkedList.next() ? "______" : "Null";
 });
 
 document.getElementById("button-append").addEventListener("click", function () {
-  console.log("Button Click");
+  //const value = prompt("Welchen Wert soll dein neues Element haben?");
+
+  mainLinkedList.append(Number(12));
 });
 
 document
   .getElementById("button-setContent")
   .addEventListener("click", function () {
-    console.log("Button Click");
+    //const value = prompt("Welchen neuen Wert soll dein Element haben?");
+
+    mainLinkedList.setContent(Number(88));
   });
 
 document
   .getElementById("button-toFirst")
   .addEventListener("click", function () {
-    console.log("Button Click");
+    mainLinkedList.toFirst();
   });
 
 document.getElementById("button-insert").addEventListener("click", function () {
@@ -44,25 +41,39 @@ document.getElementById("button-insert").addEventListener("click", function () {
 document
   .getElementById("button-getContent")
   .addEventListener("click", function () {
-    console.log("Button Click");
+    outputLabel.textContent = mainLinkedList.getContent();
+
+    resetOutput();
   });
 
 document.getElementById("button-toLast").addEventListener("click", function () {
-  console.log("Button Click");
+  mainLinkedList.toLast();
 });
 
 document.getElementById("button-remove").addEventListener("click", function () {
-  console.log("Button Click");
+  mainLinkedList.remove();
 });
 
 document
   .getElementById("button-isEmpty")
   .addEventListener("click", function () {
-    console.log("Button Click");
+    outputLabel.textContent = mainLinkedList.isEmpty();
+
+    resetOutput();
   });
 
 document
   .getElementById("button-hasCurrentAccess")
   .addEventListener("click", function () {
-    console.log("Button Click");
+    outputLabel.textContent = mainLinkedList.hasCurrentAccess();
+
+    resetOutput();
   });
+
+let timeoutId;
+
+const resetOutput = function () {
+  if (timeoutId !== undefined) clearTimeout(timeoutId);
+
+  timeoutId = setTimeout(() => (outputLabel.textContent = "..."), 5000);
+};

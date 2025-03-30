@@ -1,43 +1,130 @@
+import { ContentTypError } from "./Errors/ContentTypError.js";
 import { NextElementTypError } from "./Errors/NextElementTypError.js";
 import { ListElement } from "./ListElement.js";
 
 export class LinkedList {
-  #elments = [];
-  #currentPositon;
+  #elements = [];
+
+  // Pointer
+  #current = undefined;
+  #currentArrayPos = -1;
+
+  #last = undefined;
+  #first = undefined;
 
   constructor(listContainer) {
     this.listContainer = listContainer;
   }
 
-  next() {}
+  next() {
+    if (this.#current !== undefined) {
+      if (this.#current === this.#first) this.#first.setPointer("First");
+      else if (this.#current === this.#last) this.#last.setPointer("Last");
+      else this.#current.setPointer("");
 
-  append(value) {
-    const newElement = new ListElement(value, this.#elments.at(-1));
+      this.#current = this.#current.getNextElement();
+
+      if (this.#current === undefined) {
+        this.#currentArrayPos = -1;
+        return false;
+      } else {
+        if (this.#current === this.#last)
+          this.#current.setPointer("Last/Current");
+        else this.#current.setPointer("Current");
+        this.#currentArrayPos++;
+        return true;
+      }
+    } else return false;
+  }
+
+  append(content) {
+    const newElement = new ListElement(content, undefined);
+    if (this.#elements.at(-1) !== undefined)
+      this.#elements.at(-1).setNextElement(newElement);
 
     this.#addElement(newElement);
 
-    this.#elments.push(newElement);
+    if (this.#elements.length === 0) {
+      newElement.setPointer("First/Last");
+      this.#first = newElement;
+      this.#last = newElement;
+    } else if (this.#elements.length === 1) {
+      this.#elements.at(0).setPointer("First");
+
+      newElement.setPointer("Last");
+      this.#last = newElement;
+    } else {
+      this.#elements.at(-1).setPointer("");
+      newElement.setPointer("Last");
+      this.#last = newElement;
+    }
+
+    this.#elements.push(newElement);
   }
 
-  setContent(content) {}
+  setContent(content) {
+    if (typeof content === "number") {
+      if (this.#current !== undefined) {
+        this.#current.setContent(content);
+      }
+    } else throw new ContentTypError();
+  }
 
-  toFirst() {}
+  toFirst() {
+    if (this.#current !== undefined) {
+      if (this.#current === this.#last) this.#last.setPointer("Last");
+      else this.#current.setPointer("");
+    }
+
+    this.#current = this.#first;
+
+    if (this.#current !== undefined) {
+      this.#elements.at(0).setPointer("First/Current");
+
+      this.#currentArrayPos = 0;
+    } else this.#currentArrayPos = -1;
+  }
 
   insert(content) {}
 
-  getContent() {}
+  getContent() {
+    if (this.#current !== undefined) {
+      return this.#current.value;
+    } else return "Null";
+  }
 
-  toLast() {}
+  toLast() {
+    if (this.#current !== undefined) {
+      if (this.#current === this.#first) this.#first.setPointer("First");
+      else this.#current.setPointer("");
+    }
+
+    this.#current = this.#last;
+
+    if (this.#current !== undefined) {
+      this.#elements.at(-1).setPointer("Last/Current");
+
+      this.#currentArrayPos = this.#elements.length - 1;
+    } else this.#currentArrayPos = -1;
+  }
 
   remove() {}
 
-  isEmpty() {}
+  isEmpty() {
+    return (
+      this.#first === undefined &&
+      this.#last === undefined &&
+      this.#current === undefined
+    );
+  }
 
-  hasCurrentAccess() {}
+  hasCurrentAccess() {
+    return this.#current !== undefined;
+  }
 
   #addElement(listElement) {
     if (listElement instanceof ListElement) {
-      if (this.#elments.length !== 0) {
+      if (this.#elements.length !== 0) {
         this.listContainer.insertAdjacentHTML(
           "beforeend",
           `<div class="arrow">→</div>`
