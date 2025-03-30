@@ -1,4 +1,5 @@
 import { ContentTypError } from "./Errors/ContentTypError.js";
+import { NextElementTypError } from "./Errors/NextElementTypError.js";
 
 export class ListElement {
   divElement;
@@ -10,10 +11,7 @@ export class ListElement {
 
     if (nextElement instanceof ListElement || nextElement === undefined) {
       this.#nextElement = nextElement;
-    } else
-      throw new Error(
-        "The next elment from one elemnt has to be an instance from the class ListElement!"
-      );
+    } else throw new NextElementTypError();
   }
 
   setContent(content) {
@@ -47,9 +45,6 @@ export class ListElement {
   setNextElement(newNextElement) {
     if (newNextElement instanceof ListElement || newNextElement === undefined) {
       this.#nextElement = newNextElement;
-    } else
-      throw new Error(
-        "The next elment from one elemnt has to be an instance from the class ListElement!"
-      );
+    } else throw new NextElementTypError();
   }
 }
