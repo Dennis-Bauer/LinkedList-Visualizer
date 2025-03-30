@@ -1,14 +1,24 @@
+import { ContentTypError } from "./Errors/ContentTypError.js";
+
 export class ListElement {
   divElement;
 
   constructor(value) {
-    this.value = value;
+    if (typeof value === "number") this.value = value;
+    else throw new ContentTypError();
   }
 
   addPointer(pointerName) {
     if (this.divElement !== undefined) {
       this.divElement.querySelector(".pointer").textContent = pointerName;
     }
+  }
+
+  setContent(content) {
+    if (typeof content === "number") {
+      this.value = content;
+      this.divElement.querySelector(".node").textContent = content;
+    } else throw new ContentTypError();
   }
 
   addToDOM(parentElement) {
@@ -19,6 +29,6 @@ export class ListElement {
             <div class="node">${this.value}</div>
         </div>`
     );
-    this.divElement = parentElement.lastElementChild; // Speichert das hinzugefügte Element
+    this.divElement = parentElement.lastElementChild;
   }
 }
