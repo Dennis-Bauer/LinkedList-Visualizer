@@ -5,6 +5,12 @@ export class ListElement {
     this.value = value;
   }
 
+  addPointer(pointerName) {
+    if (this.divElement !== undefined) {
+      this.divElement.querySelector(".pointer").textContent = pointerName;
+    }
+  }
+
   addToDOM(parentElement) {
     parentElement.insertAdjacentHTML(
       "beforeend",
