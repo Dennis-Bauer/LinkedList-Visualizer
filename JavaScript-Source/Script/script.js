@@ -1,5 +1,8 @@
 "use strict";
 
+import { LinkedList } from "./LinkedList.js";
+import { ListElement } from "./ListElement.js";
+
 const currentPointerHtml = `<div class="pointer">Current</div>`;
 const firstPointerHtml = `<div class="pointer">First</div>`;
 const lastPointerHtml = `<div class="pointer">Last</div>`;
@@ -11,17 +14,7 @@ const outputLabel = document.getElementById("output");
 
 //listContainer.insertAdjacentHTML("beforeend", arrow);
 
-class ListElement {
-  constructor(value) {
-    this.value = value;
-  }
-
-  get htmlString() {
-    return `<div class="node-container">
-                <div class="node">${this.value}</div>
-            </div>`;
-  }
-}
+const e = new ListElement(2);
 
 // Buttons
 document.getElementById("button-next").addEventListener("click", function () {
