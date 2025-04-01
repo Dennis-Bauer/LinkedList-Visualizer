@@ -43,9 +43,11 @@ document
   .addEventListener("click", function () {
     const lElement = mainLinkedList.getContent();
 
-    outputLabel.textContent = lElement.getValue();
+    if (lElement) {
+      outputLabel.textContent = lElement.getValue();
 
-    resetOutput(lElement);
+      resetOutput(lElement);
+    }
   });
 
 document.getElementById("button-toLast").addEventListener("click", function () {
