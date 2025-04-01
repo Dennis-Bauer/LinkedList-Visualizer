@@ -1,6 +1,14 @@
+:root {
+  /*Use Var: var(--name)*/
+  --primaryFi: #001f3f;
+  --primarySe: #3a6d8c;
+  --secondaryFi: #6a9ab0;
+  --secondarySe: #ead8b1;
+}
+
 body {
-  background-color: #153448;
-  color: #dfd0b8;
+  background-color: var(--primaryFi);
+  color: var(--secondarySe);
   font-family: Arial, sans-serif;
   text-align: center;
 }
@@ -10,8 +18,8 @@ body {
   align-items: flex-start;
   margin: 20px 0;
   padding: 20px;
-  background-color: #948979;
-  border: 3px solid #948979;
+  background-color: var(--secondaryFi);
+  border: 3px solid var(--secondaryFi);
   border-radius: 10px;
   position: relative;
   height: 60px;
@@ -23,21 +31,24 @@ body {
   justify-content: flex-start;
   min-height: 20px; /* Einheitliche Höhe für alle Nodes */
 }
+.node.currentVal {
+  color: gray;
+}
 .node {
-  background-color: #948979;
-  color: #dfd0b8;
+  background-color: var(--secondaryFi);
+  color: var(--secondarySe);
   padding: 10px;
   border-radius: 5px;
   position: relative;
 }
 .arrow {
-  color: #3c5b6f;
+  color: var(--primarySe);
   font-size: 24px;
   align-self: center;
   margin-top: 15px;
 }
 .pointer {
-  color: #3c5b6f;
+  color: var(--primarySe);
   font-weight: bold;
   min-height: 20px; /* Einheitliche Höhe für die Pointer */
   display: flex;
@@ -59,14 +70,14 @@ body {
 .labels {
   margin-top: 10px;
   margin-bottom: 15px;
-  background-color: #948979;
+  background-color: var(--secondaryFi);
   padding: 5px;
   border-radius: 5px;
   display: inline-block;
 }
 .buttons button {
-  background-color: #3c5b6f;
-  color: #dfd0b8;
+  background-color: var(--primarySe);
+  color: var(--secondarySe);
   border: none;
   padding: 10px;
   margin: 5px;

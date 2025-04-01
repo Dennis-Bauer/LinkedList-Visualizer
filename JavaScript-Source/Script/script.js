@@ -15,15 +15,15 @@ document.getElementById("button-next").addEventListener("click", function () {
 document.getElementById("button-append").addEventListener("click", function () {
   //const value = prompt("Welchen Wert soll dein neues Element haben?");
 
-  mainLinkedList.append(Number(12));
+  mainLinkedList.append(Number(22));
 });
 
 document
   .getElementById("button-setContent")
   .addEventListener("click", function () {
-    //const value = prompt("Welchen neuen Wert soll dein Element haben?");
+    const value = prompt("Welchen neuen Wert soll dein Element haben?");
 
-    mainLinkedList.setContent(Number(88));
+    mainLinkedList.setContent(Number(value));
   });
 
 document
@@ -33,17 +33,19 @@ document
   });
 
 document.getElementById("button-insert").addEventListener("click", function () {
-  //const value = prompt("Welchen neuen Wert soll dein Element haben?");
+  const value = prompt("Welchen neuen Wert soll dein Element haben?");
 
-  mainLinkedList.insert(Number(99));
+  mainLinkedList.insert(Number(value));
 });
 
 document
   .getElementById("button-getContent")
   .addEventListener("click", function () {
-    outputLabel.textContent = mainLinkedList.getContent();
+    const lElement = mainLinkedList.getContent();
 
-    resetOutput();
+    outputLabel.textContent = lElement.getValue();
+
+    resetOutput(lElement);
   });
 
 document.getElementById("button-toLast").addEventListener("click", function () {
@@ -72,8 +74,11 @@ document
 
 let timeoutId;
 
-const resetOutput = function () {
+const resetOutput = function (lElement) {
   if (timeoutId !== undefined) clearTimeout(timeoutId);
 
-  timeoutId = setTimeout(() => (outputLabel.textContent = "..."), 5000);
+  timeoutId = setTimeout(() => {
+    outputLabel.textContent = "...";
+    if (lElement) lElement.resetVisibility();
+  }, 5000);
 };

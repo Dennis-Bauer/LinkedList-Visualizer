@@ -20,6 +20,8 @@ export class LinkedList {
     if (this.#current) {
       this.#current.setPointer();
 
+      this.#current.resetVisibility();
+
       this.#last.setPointer(false, false, true);
 
       this.#first.setPointer(
@@ -74,7 +76,7 @@ export class LinkedList {
 
   toFirst() {
     if (this.#first === this.#last) {
-      this.#first.setPointer(true, true, true);
+      this.#first?.setPointer(true, true, true);
       return;
     }
 
@@ -82,6 +84,8 @@ export class LinkedList {
       if (this.#current === this.#last)
         this.#last.setPointer(false, false, true);
       else this.#current.setPointer();
+
+      this.#current.resetVisibility();
     }
 
     this.#current = this.#first;
@@ -117,13 +121,13 @@ export class LinkedList {
 
   getContent() {
     if (this.#current) {
-      return this.#current.value;
+      return this.#current;
     } else return "Null";
   }
 
   toLast() {
     if (this.#first === this.#last) {
-      this.#first.setPointer(true, true, true);
+      this.#first?.setPointer(true, true, true);
       return;
     }
 
@@ -131,6 +135,8 @@ export class LinkedList {
       if (this.#current === this.#first)
         this.#first.setPointer(false, true, false);
       else this.#current.setPointer();
+
+      this.#current.resetVisibility();
     }
 
     this.#current = this.#last;

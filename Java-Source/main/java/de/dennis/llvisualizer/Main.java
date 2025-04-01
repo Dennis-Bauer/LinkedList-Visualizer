@@ -80,12 +80,6 @@ public class Main extends Application {
 
         StackPane outputPane = new StackPane(outPutBackground, outputLabel);
 
-        // Current null Label
-        Rectangle currentNullBackground = buildRectangle("currentNullLabel_Background", WINDOW_WIDTH * 0.32, WINDOW_HEIGHT * 0.08, Color.WHITE, false, null, 0);
-        Label currentNullLabel = buildLabel("currentNullLabel", "Current: Null", Font.font(TEXT_FONT, FontWeight.EXTRA_BOLD, FONT_SIZE * 1.5), TextAlignment.CENTER, Color.DARKRED);
-
-        StackPane currentNullPane = new StackPane(currentNullBackground, currentNullLabel);
-
         // Buttons
         Button appendButton = createStandardButton("append(Content)");
         Button setContentButton = createStandardButton("setContent(Content)");
@@ -102,19 +96,15 @@ public class Main extends Application {
         getContentButton.setOnMouseClicked(_ -> primaryList.getContentNode());
         removeButton.setOnMouseClicked(_ -> {
             primaryList.remove();
-            currentNullPane.setVisible(!primaryList.hasCurrentAccess());
         });
         nextButton.setOnMouseClicked(_ -> {
             primaryList.next();
-            currentNullPane.setVisible(!primaryList.hasCurrentAccess());
         });
         toLastButton.setOnMouseClicked(_ -> {
             primaryList.toLast();
-            currentNullPane.setVisible(!primaryList.hasCurrentAccess());
         });
         toFirstButton.setOnMouseClicked(_ -> {
             primaryList.toFirst();
-            currentNullPane.setVisible(!primaryList.hasCurrentAccess());
         });
         isEmptyButton.setOnMouseClicked(_ -> {
             if (primaryList.isEmpty()) {
@@ -139,12 +129,10 @@ public class Main extends Application {
         appendButton.setOnMouseClicked(_ -> {
             if (!inputBox.getText().isEmpty() && isStringInt(inputBox.getText()) && inputBox.getText().length() <= Main.MAX_INPUT_LENGTH)
                 primaryList.append(new ListElement(Integer.parseInt(inputBox.getText())));
-            currentNullPane.setVisible(!primaryList.hasCurrentAccess());
         });
         insertButton.setOnMouseClicked(_ -> {
             if (!inputBox.getText().isEmpty() && isStringInt(inputBox.getText()) && inputBox.getText().length() <= Main.MAX_INPUT_LENGTH)
                 primaryList.insert(new ListElement(Integer.parseInt(inputBox.getText())));
-            currentNullPane.setVisible(!primaryList.hasCurrentAccess());
         });
         setContentButton.setOnMouseClicked(_ -> {
             if (!inputBox.getText().isEmpty() && isStringInt(inputBox.getText()) && inputBox.getText().length() <= Main.MAX_INPUT_LENGTH)
@@ -156,8 +144,7 @@ public class Main extends Application {
                 new VBox(buttonSpacing,
                         nextButton,
                         toFirstButton,
-                        toLastButton,
-                        currentNullPane
+                        toLastButton
                 ),
                 new VBox(buttonSpacing,
                         appendButton,
