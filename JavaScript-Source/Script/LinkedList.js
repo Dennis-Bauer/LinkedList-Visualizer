@@ -108,7 +108,55 @@ export class LinkedList {
     } else this.#currentArrayPos = -1;
   }
 
-  remove() {}
+  remove() {
+    if (this.#current !== undefined) {
+      // Visual
+      if (this.#current !== this.#last)
+        this.listContainer.removeChild(
+          this.#current.divElement.nextElementSibling
+        );
+      this.listContainer.removeChild(this.#current.divElement);
+
+      const beforeCur = this.#elements[this.#currentArrayPos - 1];
+      const afterCur = this.#current.getNextElement();
+
+      this.#elements = this.#elements.filter((val) => val !== this.#current);
+
+      if (!beforeCur && !afterCur) {
+        this.listContainer.innerHTML = "";
+        this.#currentArrayPos = -1;
+
+        this.#current = undefined;
+        this.#first = undefined;
+        this.#last = undefined;
+        return;
+      } else if (!beforeCur) {
+        afterCur.setPointer(
+          afterCur === this.#last ? "First/Current/Last" : "First/Current"
+        );
+        this.#first = afterCur;
+        this.#current = afterCur;
+      } else if (!afterCur) {
+        beforeCur.setPointer(beforeCur === this.#first ? "First/Last" : "Last");
+
+        this.listContainer.removeChild(beforeCur.divElement.nextElementSibling);
+
+        this.#last = beforeCur;
+        beforeCur.setNextElement(undefined);
+        this.#current = undefined;
+        this.#currentArrayPos = -1;
+      } else {
+        this.#current = afterCur;
+
+        beforeCur.setNextElement(afterCur);
+
+        if (this.#current === this.#first) afterCur.setPointer("First/Current");
+        else if (this.#current === this.#last)
+          afterCur.setPointer("Last/Current");
+        else afterCur.setPointer("Current");
+      }
+    }
+  }
 
   isEmpty() {
     return (
