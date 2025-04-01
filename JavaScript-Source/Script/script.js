@@ -33,7 +33,9 @@ document
   });
 
 document.getElementById("button-insert").addEventListener("click", function () {
-  console.log("Button Click");
+  //const value = prompt("Welchen neuen Wert soll dein Element haben?");
+
+  mainLinkedList.insert(Number(99));
 });
 
 document

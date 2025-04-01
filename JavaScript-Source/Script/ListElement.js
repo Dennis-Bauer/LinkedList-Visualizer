@@ -33,15 +33,23 @@ export class ListElement {
     }
   }
 
-  addToDOM(parentElement) {
-    parentElement.insertAdjacentHTML(
-      "beforeend",
-      `<div class="node-container">
+  addToDOM(parentElement, beforeElement) {
+    const nodeString = `<div class="node-container">
             <div class="pointer"></div>
             <div class="node">${this.value}</div>
-        </div>`
-    );
-    this.divElement = parentElement.lastElementChild;
+        </div>`;
+
+    const template = document.createElement("template");
+    template.innerHTML = nodeString.trim();
+    const newNode = template.content.firstChild;
+
+    if (beforeElement) {
+      parentElement.insertBefore(newNode, beforeElement);
+    } else {
+      parentElement.appendChild(newNode);
+    }
+
+    this.divElement = newNode;
   }
 
   getNextElement() {

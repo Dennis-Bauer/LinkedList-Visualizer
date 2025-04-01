@@ -17,7 +17,7 @@ export class LinkedList {
   }
 
   next() {
-    if (this.#current !== undefined) {
+    if (this.#current) {
       this.#current.setPointer();
 
       this.#last.setPointer(false, false, true);
@@ -30,7 +30,7 @@ export class LinkedList {
 
       this.#current = this.#current.getNextElement();
 
-      if (this.#current === undefined) {
+      if (!this.#current) {
         this.#currentArrayPos = -1;
       } else {
         this.#current.setPointer(true, false, this.#current === this.#last);
@@ -45,7 +45,7 @@ export class LinkedList {
     if (this.#elements.at(-1) !== undefined)
       this.#elements.at(-1).setNextElement(newElement);
 
-    this.#addElement(newElement);
+    this.#addElement(newElement, this.#elements.length);
 
     if (this.#elements.length === 0) {
       this.#first = newElement;
@@ -55,7 +55,7 @@ export class LinkedList {
 
       this.#last = newElement;
     } else {
-      this.#elements.at(-1).setPointer();
+      this.#elements.at(-1).setPointer(this.#last === this.#current);
       this.#last = newElement;
     }
 
@@ -66,7 +66,7 @@ export class LinkedList {
 
   setContent(content) {
     if (typeof content === "number") {
-      if (this.#current !== undefined) {
+      if (this.#current) {
         this.#current.setContent(content);
       }
     } else throw new ContentTypError();
@@ -78,7 +78,7 @@ export class LinkedList {
       return;
     }
 
-    if (this.#current !== undefined) {
+    if (this.#current) {
       if (this.#current === this.#last)
         this.#last.setPointer(false, false, true);
       else this.#current.setPointer();
@@ -86,17 +86,37 @@ export class LinkedList {
 
     this.#current = this.#first;
 
-    if (this.#current !== undefined) {
+    if (this.#current) {
       this.#elements.at(0).setPointer(true, true, false);
 
       this.#currentArrayPos = 0;
     } else this.#currentArrayPos = -1;
   }
 
-  insert(content) {}
+  insert(content) {
+    if (this.#current) {
+      if (this.#current === this.#last) {
+        this.append(content);
+      }
+
+      const newElement = new ListElement(
+        content,
+        this.#current.getNextElement()
+      );
+
+      this.#current.setNextElement(newElement);
+
+      console.log(this.#currentArrayPos);
+
+      this.#addElement(newElement, this.#currentArrayPos + 1);
+
+      this.#elements.splice(this.#currentArrayPos, 0, newElement);
+      console.dir(this.#elements);
+    }
+  }
 
   getContent() {
-    if (this.#current !== undefined) {
+    if (this.#current) {
       return this.#current.value;
     } else return "Null";
   }
@@ -107,7 +127,7 @@ export class LinkedList {
       return;
     }
 
-    if (this.#current !== undefined) {
+    if (this.#current) {
       if (this.#current === this.#first)
         this.#first.setPointer(false, true, false);
       else this.#current.setPointer();
@@ -115,7 +135,7 @@ export class LinkedList {
 
     this.#current = this.#last;
 
-    if (this.#current !== undefined) {
+    if (this.#current) {
       this.#elements.at(-1).setPointer(true, false, true);
 
       this.#currentArrayPos = this.#elements.length - 1;
@@ -123,7 +143,7 @@ export class LinkedList {
   }
 
   remove() {
-    if (this.#current !== undefined) {
+    if (this.#current) {
       // Visual
       if (this.#current !== this.#last)
         this.listContainer.removeChild(
@@ -184,16 +204,32 @@ export class LinkedList {
     return this.#current !== undefined;
   }
 
-  #addElement(listElement) {
-    if (listElement instanceof ListElement) {
-      if (this.#elements.length !== 0) {
-        this.listContainer.insertAdjacentHTML(
-          "beforeend",
-          `<div class="arrow">→</div>`
-        );
-      }
+  #addElement(listElement, pos = this.#elements.length) {
+    if (!(listElement instanceof ListElement)) {
+      throw new NextElementTypError();
+    }
+    if (pos < 0 || pos > this.#elements.length) {
+      throw new RangeError(
+        "The position of a new node has to be positive and within bounds!"
+      );
+    }
 
+    if (this.#elements.length === 0) {
       listElement.addToDOM(this.listContainer);
-    } else throw new NextElementTypError();
+    } else {
+      const arrow = document.createElement("div");
+      arrow.classList.add("arrow");
+      arrow.textContent = "→";
+
+      const referenceElement = this.#elements.at(pos)?.divElement || null;
+
+      if (pos >= this.#elements.length - 1) {
+        this.listContainer.insertBefore(arrow, referenceElement);
+        listElement.addToDOM(this.listContainer, referenceElement);
+      } else {
+        listElement.addToDOM(this.listContainer, referenceElement);
+        this.listContainer.insertBefore(arrow, referenceElement);
+      }
+    }
   }
 }
