@@ -4,6 +4,8 @@ import de.dennis.llvisualizer.Main;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -20,6 +22,7 @@ public class StartScreen extends Pane {
     private final double BUTTON_X = Main.WINDOW_WIDTH / 2 - BUTTON_WIDTH / 2;
 
     public StartScreen() {
+        setBackground(new Background(new BackgroundFill(Main.PRIMARY_FIRST, null, null)));
         Button creatListButton = buildButton("createListButton", "Erstelle List", BUTTON_WIDTH, Main.WINDOW_HEIGHT / 4, Font.font(Main.TEXT_FONT, FontWeight.BOLD, Main.FONT_SIZE * 2), BUTTON_X, Main.WINDOW_HEIGHT * 0.2);
         Button loadPreList = buildButton("loadPreListButton", "Lade Test List", BUTTON_WIDTH, Main.WINDOW_HEIGHT / 4, Font.font(Main.TEXT_FONT, FontWeight.BOLD, Main.FONT_SIZE * 2), BUTTON_X, Main.WINDOW_HEIGHT * 0.5);
 

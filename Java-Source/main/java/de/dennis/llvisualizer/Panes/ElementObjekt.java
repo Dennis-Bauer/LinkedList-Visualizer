@@ -20,36 +20,40 @@ import static de.dennis.llvisualizer.Utilities.JavaFXConstructorUtilities.buildR
 
 public class ElementObjekt extends HBox {
 
-    private final String CONTENT_ADDON = "'";
+    private final String CONTENT_ADDON = "";
+    private final String CONTENT_NOTHING = "X";
 
     // Content
     private final StackPane contentRectanglePane;
     private final Label contentLabel;
     private final VBox contentPane;
+    private int content;
 
     // Programm Arrows
     private final ArrowObjekt currentArrow = new ArrowObjekt("currentArrow", new Point2D(0, 0), Main.WINDOW_HEIGHT * 0.045, Main.WINDOW_WIDTH * 0.01, Main.WINDOW_HEIGHT * 0.03, Main.WINDOW_WIDTH * 0.025, Main.CURRENT_ARROW_COLOR);
 
     private final VBox posArrow;
-    private final Label posArrowLabel = buildLabel("posArrow_label", "First", Font.font(Main.TEXT_FONT, FontWeight.BOLD, Main.FONT_SIZE * 0.7), TextAlignment.CENTER, Color.BLUE);
+    private final Label posArrowLabel = buildLabel("posArrow_label", "First", Font.font(Main.TEXT_FONT, FontWeight.BOLD, Main.FONT_SIZE * 0.7), TextAlignment.CENTER, Main.SECONDARY_SECOND);
 
     // Content Arrow
     private final ArrowObjekt contentArrowObj;
 
     public ElementObjekt(int content) {
 
+        this.content = content;
+
         // Content
-        Rectangle backgroundRectangle = buildRectangle("graphicObject_Background", Main.WINDOW_WIDTH * 0.08, Main.WINDOW_WIDTH * 0.08, Color.BLACK, true, Color.WHITE, 2);
-        contentLabel = buildLabel("graphicObject_Text", (CONTENT_ADDON + content + CONTENT_ADDON), Font.font(Main.TEXT_FONT, FontPosture.REGULAR, Main.FONT_SIZE), TextAlignment.CENTER, Main.CONTENT_COLOR_NOTHING);
+        Rectangle backgroundRectangle = buildRectangle("graphicObject_Background", Main.WINDOW_WIDTH * 0.08, Main.WINDOW_WIDTH * 0.08, Color.BLACK, false, Color.WHITE, 0);
+        contentLabel = buildLabel("graphicObject_Text", (CONTENT_ADDON + CONTENT_NOTHING + CONTENT_ADDON), Font.font(Main.TEXT_FONT, FontWeight.BOLD, Main.FONT_SIZE), TextAlignment.CENTER, Main.SECONDARY_SECOND);
 
         contentRectanglePane = new StackPane(backgroundRectangle, contentLabel);
 
         // Current Arrow
-        Label currentArrowLabel = buildLabel("currentArrow_label", "Current", Font.font(Main.TEXT_FONT, FontWeight.BOLD, Main.FONT_SIZE * 0.7), TextAlignment.CENTER, Color.BLUE);
+        Label currentArrowLabel = buildLabel("currentArrow_label", "Current", Font.font(Main.TEXT_FONT, FontWeight.BOLD, Main.FONT_SIZE * 0.7), TextAlignment.CENTER, Main.SECONDARY_SECOND);
         currentArrow.getChildren().add(currentArrowLabel);
 
         //Pos Arrow
-        ArrowObjekt posArrowObj = new ArrowObjekt("posArrow", new Point2D(0, 0), Main.WINDOW_HEIGHT * 0.045, Main.WINDOW_WIDTH * 0.01, Main.WINDOW_HEIGHT * 0.03, Main.WINDOW_WIDTH * 0.025, Main.FIRST_LAST_ARROW_COLOR);
+        ArrowObjekt posArrowObj = new ArrowObjekt("posArrow", new Point2D(0, 0), Main.WINDOW_HEIGHT * 0.045, Main.WINDOW_WIDTH * 0.008, Main.WINDOW_HEIGHT * 0.03, Main.WINDOW_WIDTH * 0.025, Main.FIRST_LAST_ARROW_COLOR);
         posArrowObj.setRotate(180);
 
         posArrow = new VBox(-0.5, posArrowLabel, posArrowObj);
@@ -59,7 +63,7 @@ public class ElementObjekt extends HBox {
         contentPane = new VBox(posArrow, contentRectanglePane, currentArrow);
 
         // Content Arrow
-        contentArrowObj = new ArrowObjekt("contentArrow", new Point2D(0, 0), Main.WINDOW_HEIGHT * 0.025, Main.WINDOW_WIDTH * 0.005, Main.WINDOW_HEIGHT * 0.015, Main.WINDOW_WIDTH * 0.0125, Color.BLACK);
+        contentArrowObj = new ArrowObjekt("contentArrow", new Point2D(0, 0), Main.WINDOW_HEIGHT * 0.025, Main.WINDOW_WIDTH * 0.003, Main.WINDOW_HEIGHT * 0.015, Main.WINDOW_WIDTH * 0.0125, Main.PRIMARY_FIRST);
         contentArrowObj.setRotate(90);
 
         getChildren().addAll(contentPane, contentArrowObj);
@@ -72,17 +76,26 @@ public class ElementObjekt extends HBox {
     public void setCurrentArrowVisible(boolean isVisible) {
         currentArrow.setVisible(isVisible);
 
-        if (isVisible) contentLabel.setTextFill(Main.CONTENT_COLOR_CURRENT);
-        else contentLabel.setTextFill(Main.CONTENT_COLOR_NOTHING);
+        if (isVisible) {
+            contentLabel.setTextFill(Main.CONTENT_COLOR_CURRENT);
+            contentLabel.setText(content + "");
+        }
+        else {
+            contentLabel.setTextFill(Main.CONTENT_COLOR_NOTHING);
+            contentLabel.setText(CONTENT_NOTHING);
+        }
     }
 
     public void getContent() {
         contentLabel.setTextFill(Main.CONTENT_COLOR_GOT);
+        contentLabel.setText(content + "");
     }
 
     public void setContent(int i) {
         contentLabel.setText(CONTENT_ADDON + i + CONTENT_ADDON);
         contentLabel.setTextFill(Main.CONTENT_COLOR_CURRENT);
+
+        this.content = i;
     }
 
     public void setPosArrowVisible(boolean isVisible) {

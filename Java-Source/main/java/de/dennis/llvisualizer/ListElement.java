@@ -28,6 +28,10 @@ public class ListElement {
         getGraphicObject().setContent(content);
     }
 
+    public int getContent() {
+        return content;
+    }
+
     public void setNext(ListElement next) {
         this.next = next;
     }

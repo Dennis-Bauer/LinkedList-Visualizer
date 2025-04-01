@@ -2,6 +2,8 @@ package de.dennis.llvisualizer;
 
 import de.dennis.llvisualizer.Panes.ListView;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 
 
 public class LinkedList extends ScrollPane {
@@ -18,16 +20,15 @@ public class LinkedList extends ScrollPane {
     public LinkedList(ListElement firstElement) {
         setContent(LIST_VIEW);
 
+        setUpDesign();
+
         addFirstElement(firstElement);
     }
 
     public LinkedList() {
         setContent(LIST_VIEW);
 
-        setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
-        setMinHeight(Main.WINDOW_HEIGHT * 0.35);
-
+        setUpDesign();
 
         currentPos = -1;
         listLength = 0;
@@ -35,6 +36,15 @@ public class LinkedList extends ScrollPane {
         first = null;
         current = null;
         last = null;
+    }
+
+    private void setUpDesign() {
+        setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        setMinHeight(Main.WINDOW_HEIGHT * 0.35);
+        setBackground(new Background(new BackgroundFill(Main.PRIMARY_SECOND, null, null)));
+        setFitToWidth(true);
+        setFitToHeight(true);
     }
 
     public void append(ListElement e) {
@@ -163,10 +173,11 @@ public class LinkedList extends ScrollPane {
         }
     }
 
-    public void getContentNode() {
+    public ListElement getContentNode() {
         if (current != null) {
             current.getGraphicObject().getContent();
-        }
+            return current;
+        } else return null;
     }
 
     public boolean isEmpty() {

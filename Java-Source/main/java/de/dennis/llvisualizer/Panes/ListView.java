@@ -3,6 +3,8 @@ package de.dennis.llvisualizer.Panes;
 import de.dennis.llvisualizer.ListElement;
 import de.dennis.llvisualizer.Main;
 import javafx.geometry.Insets;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
 
 import java.util.ArrayList;
@@ -12,6 +14,8 @@ public class ListView extends HBox {
     private final ArrayList<ElementObjekt> nodeList = new ArrayList<>();
 
     public ListView() {
+        setBackground(new Background(new BackgroundFill(Main.SECONDARY_FIRST, null, null)));
+
         setSpacing(Main.WINDOW_WIDTH * 0.01);
 
         // space between scrollPane and node rectangle

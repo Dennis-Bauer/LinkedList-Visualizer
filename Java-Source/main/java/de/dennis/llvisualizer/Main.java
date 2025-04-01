@@ -7,9 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -18,6 +16,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 import static de.dennis.llvisualizer.Utilities.JavaFXConstructorUtilities.*;
+import static de.dennis.llvisualizer.Utilities.JavaUtilities.colorToRGB;
 import static de.dennis.llvisualizer.Utilities.JavaUtilities.isStringInt;
 
 public class Main extends Application {
@@ -27,13 +26,20 @@ public class Main extends Application {
     public static final String TEXT_FONT = "Arial";
     public static final double FONT_SIZE = (WINDOW_HEIGHT + WINDOW_WIDTH) * 0.015;
 
+    // Color Palette
+    public static final Color PRIMARY_FIRST = Color.web("#001f3f"); // Default: #001f3f
+    public static final Color PRIMARY_SECOND = Color.web("#3a6d8c");;
+    public static final Color SECONDARY_FIRST = Color.web("#6a9ab0");;
+    public static final Color SECONDARY_SECOND = Color.web("#ead8b1");;
+
+
     // Debug/Variables
     public static final int MAX_INPUT_LENGTH = 3;
-    public static final Color CURRENT_ARROW_COLOR = Color.INDIANRED; // Default: INDIANRED
-    public static final Color FIRST_LAST_ARROW_COLOR = Color.BLUE; // Default: BLUE
+    public static final Color CURRENT_ARROW_COLOR = PRIMARY_FIRST; // Default: PRIMARY_SECOND
+    public static final Color FIRST_LAST_ARROW_COLOR = PRIMARY_FIRST; // Default: PRIMARY_SECOND
     public static final Color CONTENT_COLOR_CURRENT = Color.GRAY; // Default: GRAY
-    public static final Color CONTENT_COLOR_GOT = Color.WHITE; // Default: WHITE
-    public static final Color CONTENT_COLOR_NOTHING = Color.BLACK; // Default: BLACK
+    public static final Color CONTENT_COLOR_GOT = SECONDARY_SECOND; // Default: SECONDARY_SECOND
+    public static final Color CONTENT_COLOR_NOTHING = SECONDARY_SECOND; // Default: SECONDARY_SECOND
 
     private static Scene primaryScene;
 
@@ -45,7 +51,6 @@ public class Main extends Application {
         stage.setTitle("List-Visualizer");
         stage.setScene(primaryScene);
         stage.show();
-
     }
 
     private static LinkedList primaryList;
@@ -66,17 +71,22 @@ public class Main extends Application {
         VBox inputBoxPane = new VBox();
         inputBoxPane.setAlignment(Pos.CENTER);
 
-        Label inputBoxHeader = buildLabel("inputBox_Header", "Input", Font.font(TEXT_FONT, FontWeight.EXTRA_BOLD, FONT_SIZE * 1.5), TextAlignment.CENTER, Color.BLACK);
+        Label inputBoxHeader = buildLabel("inputBox_Header", "Input", Font.font(TEXT_FONT, FontWeight.EXTRA_BOLD, FONT_SIZE * 1.5), TextAlignment.CENTER, SECONDARY_SECOND);
         TextField inputBox = buildTextField("inputListWithElement", "int", WINDOW_WIDTH * 0.31, WINDOW_HEIGHT * 0.125);
         inputBox.setAlignment(Pos.CENTER);
         inputBox.setMaxWidth(WINDOW_WIDTH * 0.31);
         inputBox.setText("1");
+        inputBox.setStyle("-fx-text-fill: " + colorToRGB(SECONDARY_SECOND) + ";");
+        inputBox.setBackground(new Background(new BackgroundFill(PRIMARY_SECOND, null, null)));
 
         inputBoxPane.getChildren().addAll(inputBoxHeader, inputBox);
 
         // Output Label
-        Rectangle outPutBackground = buildRectangle("outputLabel_Background", WINDOW_WIDTH * 0.32, WINDOW_HEIGHT * 0.08, Color.WHITE, false, null, 0);
-        Label outputLabel = buildLabel("outputLabel", "Output: ___", Font.font(TEXT_FONT, FontWeight.EXTRA_BOLD, FONT_SIZE * 1.5), TextAlignment.CENTER, Color.BLACK);
+        Rectangle outPutBackground = buildRectangle("outputLabel_Background", WINDOW_WIDTH * 0.32, WINDOW_HEIGHT * 0.08, SECONDARY_FIRST, true, null, 0);
+        Label outputLabel = buildLabel("outputLabel", "Output: ___", Font.font(TEXT_FONT, FontWeight.EXTRA_BOLD, FONT_SIZE * 1.5), TextAlignment.CENTER, SECONDARY_SECOND);
+
+        outPutBackground.setArcHeight(WINDOW_WIDTH * 0.07);
+        outPutBackground.setArcWidth(WINDOW_WIDTH * 0.07);
 
         StackPane outputPane = new StackPane(outPutBackground, outputLabel);
 
@@ -93,7 +103,11 @@ public class Main extends Application {
         Button hasCurrentAccess = createStandardButton("hasCurrentAccess()");
 
         // Actions
-        getContentButton.setOnMouseClicked(_ -> primaryList.getContentNode());
+        getContentButton.setOnMouseClicked(_ -> {
+                ListElement current = primaryList.getContentNode();
+                if (current != null) outputLabel.setText("Output: " + current.getContent());
+
+        });
         removeButton.setOnMouseClicked(_ -> {
             primaryList.remove();
         });
@@ -107,22 +121,12 @@ public class Main extends Application {
             primaryList.toFirst();
         });
         isEmptyButton.setOnMouseClicked(_ -> {
-            if (primaryList.isEmpty()) {
-                outputLabel.setText("Output: true");
-                outputLabel.setTextFill(Color.GREEN);
-            } else {
-                outputLabel.setText("Output: false");
-                outputLabel.setTextFill(Color.RED);
-            }
+            if (primaryList.isEmpty()) outputLabel.setText("Output: true");
+            else outputLabel.setText("Output: false");
         });
         hasCurrentAccess.setOnMouseClicked(_ -> {
-            if (primaryList.hasCurrentAccess()) {
-                outputLabel.setText("Output: true");
-                outputLabel.setTextFill(Color.GREEN);
-            } else {
-                outputLabel.setText("Output: false");
-                outputLabel.setTextFill(Color.RED);
-            }
+            if (primaryList.hasCurrentAccess()) outputLabel.setText("Output: true");
+            else outputLabel.setText("Output: false");
         });
 
         // With input
@@ -162,11 +166,15 @@ public class Main extends Application {
 
         buttonPane.setAlignment(Pos.CENTER);
 
-        primaryScene.setRoot(new VBox(WINDOW_HEIGHT * 0.02,
+        VBox root = new VBox(WINDOW_HEIGHT * 0.02,
                 primaryList,
                 buttonPane,
                 inputBoxPane
-        ));
+        );
+
+        root.setBackground(new Background(new BackgroundFill(PRIMARY_FIRST, null, null)));
+
+        primaryScene.setRoot(root);
     }
 
     private static Button createStandardButton(String text) {

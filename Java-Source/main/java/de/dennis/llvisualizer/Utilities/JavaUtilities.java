@@ -1,6 +1,8 @@
 package de.dennis.llvisualizer.Utilities;
 
 
+import javafx.scene.paint.Color;
+
 /**
  *  <h2>Utilities for Java and JavaFx to create graphical programs</h2>
  *  <p>
@@ -50,4 +52,18 @@ public class JavaUtilities {
             return false;
         }
     }
+
+    /**
+     * This method turns a color value into a rgb string value (Import JavaFX Utillitie)
+     * @param color The value to be changed.
+     * @return Returns the new String with the rgb value.
+     */
+    public static String colorToRGB(Color color) {
+        return String.format("rgb(%d, %d, %d)",
+                (int) (color.getRed() * 255),
+                (int) (color.getGreen() * 255),
+                (int) (color.getBlue() * 255)
+        );
+    }
+
 }

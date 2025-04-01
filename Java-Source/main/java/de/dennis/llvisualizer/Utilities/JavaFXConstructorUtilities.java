@@ -5,6 +5,9 @@ import javafx.geometry.Point2D;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -15,6 +18,8 @@ import javafx.scene.text.TextAlignment;
 
 import java.util.List;
 import java.util.Objects;
+
+import static de.dennis.llvisualizer.Main.PRIMARY_SECOND;
 
 /**
  *  <h2>Utilities for Java and JavaFx to create graphical programs</h2>
@@ -222,6 +227,11 @@ public class JavaFXConstructorUtilities {
         b.setPrefWidth(width);
         b.setPrefHeight(height);
         b.setFont(font);
+
+        // EXTRA
+        b.setTextFill(Main.SECONDARY_SECOND);
+        b.setBackground(new Background(new BackgroundFill(PRIMARY_SECOND, new CornerRadii(Main.WINDOW_WIDTH * 0.07), null)));
+
 
         return b;
     }
