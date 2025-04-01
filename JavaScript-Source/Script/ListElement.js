@@ -21,9 +21,15 @@ export class ListElement {
     } else throw new ContentTypError();
   }
 
-  setPointer(pointerName) {
-    if (this.divElement !== undefined) {
-      this.divElement.querySelector(".pointer").textContent = pointerName;
+  setPointer(isCurrent = false, isFirst = false, isLast = false) {
+    if (this.divElement) {
+      this.divElement.querySelector(".pointer").textContent = [
+        isCurrent ? "Current" : null,
+        isFirst ? "First" : null,
+        isLast ? "Last" : null,
+      ]
+        .filter(Boolean)
+        .join("/");
     }
   }
 

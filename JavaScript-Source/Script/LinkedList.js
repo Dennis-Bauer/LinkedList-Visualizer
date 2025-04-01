@@ -18,9 +18,15 @@ export class LinkedList {
 
   next() {
     if (this.#current !== undefined) {
-      if (this.#current === this.#first) this.#first.setPointer("First");
-      else if (this.#current === this.#last) this.#last.setPointer("Last");
-      else this.#current.setPointer("");
+      this.#current.setPointer();
+
+      this.#last.setPointer(false, false, true);
+
+      this.#first.setPointer(
+        false,
+        true,
+        this.#current === this.#first && this.#current === this.#last
+      );
 
       this.#current = this.#current.getNextElement();
 
@@ -28,9 +34,8 @@ export class LinkedList {
         this.#currentArrayPos = -1;
         return false;
       } else {
-        if (this.#current === this.#last)
-          this.#current.setPointer("Last/Current");
-        else this.#current.setPointer("Current");
+        this.#current.setPointer(true, false, this.#current === this.#last);
+
         this.#currentArrayPos++;
         return true;
       }
@@ -45,19 +50,18 @@ export class LinkedList {
     this.#addElement(newElement);
 
     if (this.#elements.length === 0) {
-      newElement.setPointer("First/Last");
       this.#first = newElement;
       this.#last = newElement;
     } else if (this.#elements.length === 1) {
-      this.#elements.at(0).setPointer("First");
+      this.#elements.at(0).setPointer(false, true, false);
 
-      newElement.setPointer("Last");
       this.#last = newElement;
     } else {
-      this.#elements.at(-1).setPointer("");
-      newElement.setPointer("Last");
+      this.#elements.at(-1).setPointer();
       this.#last = newElement;
     }
+
+    newElement.setPointer(false, this.#elements.length === 0, true);
 
     this.#elements.push(newElement);
   }
@@ -71,15 +75,21 @@ export class LinkedList {
   }
 
   toFirst() {
+    if (this.#first === this.#last) {
+      this.#first.setPointer(true, true, true);
+      return;
+    }
+
     if (this.#current !== undefined) {
-      if (this.#current === this.#last) this.#last.setPointer("Last");
-      else this.#current.setPointer("");
+      if (this.#current === this.#last)
+        this.#last.setPointer(false, false, true);
+      else this.#current.setPointer();
     }
 
     this.#current = this.#first;
 
     if (this.#current !== undefined) {
-      this.#elements.at(0).setPointer("First/Current");
+      this.#elements.at(0).setPointer(true, true, false);
 
       this.#currentArrayPos = 0;
     } else this.#currentArrayPos = -1;
@@ -94,15 +104,21 @@ export class LinkedList {
   }
 
   toLast() {
+    if (this.#first === this.#last) {
+      this.#first.setPointer(true, true, true);
+      return;
+    }
+
     if (this.#current !== undefined) {
-      if (this.#current === this.#first) this.#first.setPointer("First");
-      else this.#current.setPointer("");
+      if (this.#current === this.#first)
+        this.#first.setPointer(false, true, false);
+      else this.#current.setPointer();
     }
 
     this.#current = this.#last;
 
     if (this.#current !== undefined) {
-      this.#elements.at(-1).setPointer("Last/Current");
+      this.#elements.at(-1).setPointer(true, false, true);
 
       this.#currentArrayPos = this.#elements.length - 1;
     } else this.#currentArrayPos = -1;
@@ -131,13 +147,12 @@ export class LinkedList {
         this.#last = undefined;
         return;
       } else if (!beforeCur) {
-        afterCur.setPointer(
-          afterCur === this.#last ? "First/Current/Last" : "First/Current"
-        );
+        afterCur.setPointer(true, true, afterCur === this.#last);
+
         this.#first = afterCur;
         this.#current = afterCur;
       } else if (!afterCur) {
-        beforeCur.setPointer(beforeCur === this.#first ? "First/Last" : "Last");
+        beforeCur.setPointer(false, beforeCur === this.#first, true);
 
         this.listContainer.removeChild(beforeCur.divElement.nextElementSibling);
 
@@ -150,10 +165,11 @@ export class LinkedList {
 
         beforeCur.setNextElement(afterCur);
 
-        if (this.#current === this.#first) afterCur.setPointer("First/Current");
-        else if (this.#current === this.#last)
-          afterCur.setPointer("Last/Current");
-        else afterCur.setPointer("Current");
+        afterCur.setPointer(
+          true,
+          this.#current === this.#first,
+          this.#current === this.#last
+        );
       }
     }
   }
