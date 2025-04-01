@@ -1,17 +1,15 @@
 "use strict";
 
 import { LinkedList } from "./LinkedList.js";
-import { ListElement } from "./ListElement.js";
 
 const listContainer = document.getElementsByClassName("list-container")[0];
-const currentLabel = document.getElementById("current-null");
 const outputLabel = document.getElementById("output");
 
 const mainLinkedList = new LinkedList(listContainer);
 
 // Buttons
 document.getElementById("button-next").addEventListener("click", function () {
-  currentLabel.textContent = mainLinkedList.next() ? "______" : "Null";
+  mainLinkedList.next();
 });
 
 document.getElementById("button-append").addEventListener("click", function () {

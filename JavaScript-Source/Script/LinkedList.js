@@ -32,14 +32,12 @@ export class LinkedList {
 
       if (this.#current === undefined) {
         this.#currentArrayPos = -1;
-        return false;
       } else {
         this.#current.setPointer(true, false, this.#current === this.#last);
 
         this.#currentArrayPos++;
-        return true;
       }
-    } else return false;
+    }
   }
 
   append(content) {
