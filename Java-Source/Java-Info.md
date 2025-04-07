@@ -167,6 +167,7 @@ To use the **.jar file**, follow these steps:
     </dependencies>
 
     <build>
+        <sourceDirectory>Java-Source/main/java</sourceDirectory>
         <plugins>
             <!-- Compiler Plugin -->
             <plugin>
