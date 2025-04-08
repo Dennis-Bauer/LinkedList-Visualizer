@@ -19,7 +19,7 @@ document.getElementById("button-next").addEventListener("click", function () {
 document.getElementById("button-append").addEventListener("click", function () {
   const value = prompt("Welchen Wert soll dein neues Element haben?");
 
-  mainLinkedList.append(Number(22));
+  mainLinkedList.append(Number(value));
 });
 
 document

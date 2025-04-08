@@ -35,27 +35,29 @@ export class LinkedList {
    * @param {Number} content The new element which gets added to the list.
    */
   append(content) {
-    const newElement = new ListElement(content, undefined);
-    if (this.#elements.at(-1) !== undefined)
-      this.#elements.at(-1).setNextElement(newElement);
+    if (!Number.isNaN(content)) {
+      const newElement = new ListElement(content, undefined);
+      if (this.#elements.at(-1) !== undefined)
+        this.#elements.at(-1).setNextElement(newElement);
 
-    this.#addElement(newElement, this.#elements.length);
+      this.#addElement(newElement, this.#elements.length);
 
-    if (this.#elements.length === 0) {
-      this.#first = newElement;
-      this.#last = newElement;
-    } else if (this.#elements.length === 1) {
-      this.#elements.at(0).setPointer(false, true, false);
+      if (this.#elements.length === 0) {
+        this.#first = newElement;
+        this.#last = newElement;
+      } else if (this.#elements.length === 1) {
+        this.#elements.at(0).setPointer(false, true, false);
 
-      this.#last = newElement;
-    } else {
-      this.#elements.at(-1).setPointer(this.#last === this.#current);
-      this.#last = newElement;
-    }
+        this.#last = newElement;
+      } else {
+        this.#elements.at(-1).setPointer(this.#last === this.#current);
+        this.#last = newElement;
+      }
 
-    newElement.setPointer(false, this.#elements.length === 0, true);
+      newElement.setPointer(false, this.#elements.length === 0, true);
 
-    this.#elements.push(newElement);
+      this.#elements.push(newElement);
+    } else throw new ContentTypError();
   }
 
   /**
@@ -64,25 +66,27 @@ export class LinkedList {
    * @param {Number} content The new element to be added to the list.
    */
   insert(content) {
-    if (this.#current) {
-      if (this.#current === this.#last) {
-        this.append(content);
+    if (!Number.isNaN(content)) {
+      if (this.#current) {
+        if (this.#current === this.#last) {
+          this.append(content);
+        }
+
+        const newElement = new ListElement(
+          content,
+          this.#current.getNextElement()
+        );
+
+        this.#current.setNextElement(newElement);
+
+        console.log(this.#currentArrayPos);
+
+        this.#addElement(newElement, this.#currentArrayPos + 1);
+
+        this.#elements.splice(this.#currentArrayPos, 0, newElement);
+        console.dir(this.#elements);
       }
-
-      const newElement = new ListElement(
-        content,
-        this.#current.getNextElement()
-      );
-
-      this.#current.setNextElement(newElement);
-
-      console.log(this.#currentArrayPos);
-
-      this.#addElement(newElement, this.#currentArrayPos + 1);
-
-      this.#elements.splice(this.#currentArrayPos, 0, newElement);
-      console.dir(this.#elements);
-    }
+    } else throw new ContentTypError();
   }
 
   /**
@@ -91,7 +95,7 @@ export class LinkedList {
    * @param {Number} content The new content that replaces the old one.
    */
   setContent(content) {
-    if (typeof content === "number") {
+    if (!Number.isNaN(content)) {
       if (this.#current) {
         this.#current.setContent(content);
       }
