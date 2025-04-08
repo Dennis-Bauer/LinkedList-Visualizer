@@ -16,7 +16,7 @@ Um die **.jar-Datei** zu nutzen, führe diese Schritte aus:
   java -version
   ```  
   Falls du **keine Zahlen** siehst, musst du **Java installieren**.  
-  [Wie installiere ich Java?](#)
+  [Wie installiere ich Java?](https://www.java.com/en/download/help/download_options.html)
 
 - **Öffne das Terminal**:  
   Öffne das **Terminal** im Verzeichnis, in dem sich die **.jar-Datei** befindet.
@@ -78,7 +78,7 @@ To use the **.jar file**, follow these steps:
   java -version
   ```  
   If you **don’t see any numbers**, you need to **install Java**.  
-  [How do I install Java?](#)
+  [How do I install Java?](https://www.java.com/en/download/help/download_options.html)
 
 - **Open the Terminal**:  
   Open the **terminal** in the directory where the **.jar file** is located.

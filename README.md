@@ -1,34 +1,40 @@
 # **Linked List Visualizer (German)** 
 
-Ein Visualisierungstool für verkettete Listen, programmiert in **Java** mit **JavaFX**.  
+Dieses Projekt bietet ein **Visualisierungstool** für **verkettete Listen**, das in **Java** mit **JavaFX** und **JavaScript** programmiert wurde. Beide Versionen funktionieren für den Benutzer auf die gleiche Weise.
 
+Es gibt zwei separate Source-Ordner, in denen jeweils die entsprechende Version enthalten ist.
+
+Für genauere Informationen findest du in jedem Ordner eine separate **ReadMe**.
 ## **Funktionen**  
 
 - **Anzeige vom Current-Zeiger**: Es wird nur der Knoten sichtbar gemacht, auf dem der Zeiger Current steht.  
 - **Visualisierung der Zeiger**: Es werden die drei Zeiger (**Current**, **First**, **Last**) gezeigt.
 - **Keine sichtbaren Werte in den Nodes**: Werte beim Current-Zeiger werden erst vollständig sichtbar, wenn `getContent()` aufgerufen wird.  
-- **Voreingestellte Test-Liste**: Eine vorgefertigte Liste kann genutzt und bearbeitet werden.  
-- **Erstellung neuer Listen**:  
+- **Voreingestellte Test-Liste** (Nur in Java): Eine vorgefertigte Liste kann genutzt und bearbeitet werden.  
+- **Erstellung neuer Listen** (Nur in Java):  
   - Leere Liste  
   - Liste mit einem initialen Element  
 - **Methodennamen als Button-Beschriftungen**: Die Buttons sind exakt so benannt wie die Methoden.  
 - **Eingabe über Input-Box**: Werte werden aus der Input-Box entnommen.  
-- **Anpassbare Darstellung** in der `Main`-Klasse:  
+- **Anpassbare Darstellung** in der `Main`-Klasse (Nur in Java):  
   - **Fenstergröße**  
   - **Schriftart und Schriftgröße**  
   - **Farben der Pfeile**  
-- **Integer-Liste**: Standardmäßig sind Zahlen auf **3 Ziffern begrenzt** (anpassbar in `Main`).  
+- **Anpassbare Darstellung** im source Ordner (Nur in JavaScript):
+  - **Schriftart und Schriftfarbe**
+  - **Größe und Farben jeglicher Elemente**
+- **Integer-Liste**: Standardmäßig sind Zahlen auf **3 Ziffern begrenzt** (anpassbar in `Main`). (Begrenzung nur in Java)  
 
 ## **Methoden**  
 
 ### `next()`  
-Verschiebt den **Current-Zeiger** nach rechts. Wenn er am Ende ist, wird er auf `null` gesetzt. Falls `Current == null`, passiert nichts.  
+Verschiebt den **Current-Zeiger** nach rechts. Wenn er am Ende ist, wird er auf `null`/`undefined` gesetzt. Falls `Current == null`/`Current === undefined`, passiert nichts.  
 
 ### `toFirst()`  
-Setzt den **Current-Zeiger** auf das erste Element. Wenn die Liste leer ist, bleibt `Current == null`.  
+Setzt den **Current-Zeiger** auf das erste Element. Wenn die Liste leer ist, bleibt `Current == null`/`Current === undefined`.  
 
 ### `toLast()`  
-Setzt den **Current-Zeiger** auf das letzte Element. Wenn die Liste leer ist, bleibt `Current == null`.  
+Setzt den **Current-Zeiger** auf das letzte Element. Wenn die Liste leer ist, bleibt `Current = null`/`Current = undefined`.  
 
 ### `append(Content)`  
 Fügt das **Element ans Ende** der Liste hinzu (`Content` aus der Input-Box).  
@@ -37,13 +43,13 @@ Fügt das **Element ans Ende** der Liste hinzu (`Content` aus der Input-Box).
 Fügt ein **Element rechts neben** dem Current-Zeiger ein (`Content` aus der Input-Box).  
 
 ### `remove()`  
-Löscht das **Element, auf dem der Current-Zeiger steht**. Falls `Current == null`, passiert nichts.  
+Löscht das **Element, auf dem der Current-Zeiger steht**. Falls `Current == null`/`Current === undefined`, passiert nichts.  
 
 ### `hasCurrentAccess()`  
-Gibt `true` zurück, wenn `Current` **nicht null** ist, andernfalls `false`. Das Ergebnis wird im **Output-Label** angezeigt.  
+Gibt `true` zurück, wenn `Current` **nicht null** / **nicht undefined** ist, andernfalls `false`. Das Ergebnis wird im **Output-Label** angezeigt.  
 
 ### `setContent(Content)`  
-Ändert den **Wert des aktuellen Knotens** (`Content` aus der Input-Box). Falls `Current == null`, passiert nichts.  
+Ändert den **Wert des aktuellen Knotens** (`Content` aus der Input-Box). Falls `Current == null`/`Current === undefined`, passiert nichts.  
 
 ### `getContent()`  
 Macht die gespeicherte Zahl in der **List-View heller**, wenn `Current` auf einen gültigen Knoten zeigt.  
@@ -59,62 +65,66 @@ Diese **Linked List Visualisierung** bietet eine intuitive Möglichkeit, das Ver
 
 # **Linked List Visualizer (English)**  
 
-A visualization tool for linked lists, programmed in **Java** with **JavaFX**.  
+This project provides a **visualization tool** for **linked lists**, programmed in **Java** with **JavaFX** and **JavaScript**. Both versions work the same way for the user.
 
-## **Features**  
+There are two separate source folders, each containing the respective version.
 
-- **Current Pointer Display**: Only the node where the **Current pointer** is located is visible.  
-- **Pointer Visualization**: The three pointers (**Current**, **First**, **Last**) are displayed.  
-- **No visible values in the nodes**: Values at the Current pointer are only fully visible when `getContent()` is called.  
-- **Predefined Test List**: A predefined list can be used and modified.  
-- **Creating New Lists**:  
-  - Empty list  
-  - List with an initial element  
-- **Method names as button labels**: The buttons are named exactly as the methods.  
-- **Input via Input Box**: Values are taken from the input box.  
-- **Customizable Display** in the `Main` class:  
-  - **Window size**  
-  - **Font style and size**  
-  - **Arrow colors**  
-- **Integer List**: By default, numbers are limited to **3 digits** (configurable in `Main`).  
+For more detailed information, you can find a separate **ReadMe** in each folder.
 
-## **Methods**  
+## **Features**
 
-### `next()`  
-Moves the **Current pointer** to the next node. If it reaches the end, it is set to `null`. If `Current == null`, nothing happens.  
+- **Current pointer display**: Only the node that the Current pointer is pointing to is made visible.
+- **Pointer visualization**: The three pointers (**Current**, **First**, **Last**) are displayed.
+- **No visible values in the nodes**: Values at the Current pointer are only fully visible when `getContent()` is called.
+- **Preset test list** (Java only): A pre-configured list can be used and modified.
+- **Create new lists** (Java only):
+  - Empty list
+  - List with an initial element
+- **Method names as button labels**: The buttons are named exactly as the methods.
+- **Input via input box**: Values are taken from the input box.
+- **Customizable display** in the `Main` class (Java only):
+  - **Window size**
+  - **Font and font size**
+  - **Arrow colors**
+- **Customizable display** in the source folder (JavaScript only):
+  - **Font and font color**
+  - **Size and colors of all elements**
+- **Integer list**: By default, numbers are **limited to 3 digits** (can be adjusted in `Main`). (Limitation only in Java)
 
-### `toFirst()`  
-Sets the **Current pointer** to the first element. If the list is empty, `Current` remains `null`.  
+## **Methods**
 
-### `toLast()`  
-Sets the **Current pointer** to the last element. If the list is empty, `Current` remains `null`.  
+### `next()`
+Moves the **Current pointer** to the right. If it's at the end, it is set to `null`/`undefined`. If `Current == null`/`Current === undefined`, nothing happens.
 
-### `append(Content)`  
-Adds the **element to the end** of the list (`Content` from the input box).  
+### `toFirst()`
+Sets the **Current pointer** to the first element. If the list is empty, `Current == null`/`Current === undefined` remains.
 
-### `insert(Content)`  
-Inserts an **element right next to** the Current pointer (`Content` from the input box).  
+### `toLast()`
+Sets the **Current pointer** to the last element. If the list is empty, `Current = null`/`Current = undefined` remains.
 
-### `remove()`  
-Deletes the **element at the Current pointer**. If `Current == null`, nothing happens.  
+### `append(Content)`
+Adds the **element to the end** of the list (`Content` from the input box).
 
-### `hasCurrentAccess()`  
-Returns `true` if `Current` is **not null**, otherwise `false`. The result is displayed in the **Output label**.  
+### `insert(Content)`
+Inserts an **element to the right of** the Current pointer (`Content` from the input box).
 
-### `setContent(Content)`  
-Changes the **value of the current node** (`Content` from the input box). If `Current == null`, nothing happens.  
+### `remove()`
+Deletes the **element that the Current pointer is pointing to**. If `Current == null`/`Current === undefined`, nothing happens.
 
-### `getContent()`  
-Makes the stored number in the **List-View lighter** when `Current` points to a valid node.  
+### `hasCurrentAccess()`
+Returns `true` if `Current` is **not null** / **not undefined**, otherwise returns `false`. The result is displayed in the **output label**.
 
-### `isEmpty()`  
-Returns `true` if the list is **empty**.  
+### `setContent(Content)`
+Changes the **value of the current node** (`Content` from the input box). If `Current == null`/`Current === undefined`, nothing happens.
+
+### `getContent()`
+Makes the stored number in the **list view brighter** if `Current` points to a valid node.
+
+### `isEmpty()`
+Returns `true` if the list is **empty**.
 
 ---
 
 This **Linked List Visualization** provides an intuitive way to understand and test the behavior of a **linked list**.
 
-# **Example Pictures (Beispiel Bilder)**  
-<img width="790" alt="List_normalView" src="https://github.com/user-attachments/assets/226676b7-6cba-4af7-be69-1b58dfbfd6a8" />
-<img width="790" alt="List_CreateNewListView" src="https://github.com/user-attachments/assets/baa75520-8557-4167-ab63-bbdd86b9a1c1" />
-<img width="789" alt="List_1Element_Current-Null_IsEmpty-False" src="https://github.com/user-attachments/assets/f238c367-aa5a-45f6-a9e9-9f870789129a" />
+# **Example Pictures (Beispiel Bilder)**
