@@ -62,7 +62,7 @@ public class LinkedList extends ScrollPane {
         setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         setMinHeight(Main.WINDOW_HEIGHT * 0.35);
-        setBackground(new Background(new BackgroundFill(Main.PRIMARY_SECOND, null, null)));
+        setBackground(new Background(new BackgroundFill(Main.SECOND_COLOR, null, null)));
         setFitToWidth(true);
         setFitToHeight(true);
     }

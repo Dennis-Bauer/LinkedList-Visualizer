@@ -1,14 +1,14 @@
 :root {
   /*Use Var: var(--name)*/
-  --primaryFi: #001f3f;
-  --primarySe: #3a6d8c;
-  --secondaryFi: #6a9ab0;
-  --secondarySe: #ead8b1;
+  --first: #27374d;
+  --second: #526d82;
+  --third: #9db2bf;
+  --four: #dde6ed;
 }
 
 body {
-  background-color: var(--primaryFi);
-  color: var(--secondarySe);
+  background-color: var(--first);
+  color: var(--four);
   font-family: Arial, sans-serif;
   text-align: center;
 }
@@ -18,8 +18,7 @@ body {
   align-items: flex-start;
   margin: 20px 0;
   padding: 20px;
-  background-color: var(--secondaryFi);
-  border: 3px solid var(--secondaryFi);
+  background-color: var(--second);
   border-radius: 10px;
   position: relative;
   height: 60px;
@@ -35,20 +34,20 @@ body {
   color: gray;
 }
 .node {
-  background-color: var(--secondaryFi);
-  color: var(--secondarySe);
+  background-color: var(--third);
+  color: var(--four);
   padding: 10px;
   border-radius: 5px;
   position: relative;
 }
 .arrow {
-  color: var(--primarySe);
+  color: var(--third);
   font-size: 24px;
   align-self: center;
   margin-top: 15px;
 }
 .pointer {
-  color: var(--primarySe);
+  color: var(--third);
   font-weight: bold;
   min-height: 20px; /* Einheitliche Höhe für die Pointer */
   display: flex;
@@ -70,14 +69,14 @@ body {
 .labels {
   margin-top: 10px;
   margin-bottom: 15px;
-  background-color: var(--secondaryFi);
+  background-color: var(--second);
   padding: 5px;
   border-radius: 5px;
   display: inline-block;
 }
 .buttons button {
-  background-color: var(--primarySe);
-  color: var(--secondarySe);
+  background-color: var(--second);
+  color: var(--four);
   border: none;
   padding: 10px;
   margin: 5px;

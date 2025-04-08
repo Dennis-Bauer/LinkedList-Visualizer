@@ -44,7 +44,7 @@ public class ElementObjekt extends HBox {
     // Programm Arrows
     private final ArrowObjekt currentArrow = new ArrowObjekt("currentArrow", new Point2D(0, 0), Main.WINDOW_HEIGHT * 0.045, Main.WINDOW_WIDTH * 0.01, Main.WINDOW_HEIGHT * 0.03, Main.WINDOW_WIDTH * 0.025, Main.CURRENT_ARROW_COLOR);
     private final VBox posArrow;
-    private final Label posArrowLabel = buildLabel("posArrow_label", "First", Font.font(Main.TEXT_FONT, FontWeight.BOLD, Main.FONT_SIZE * 0.7), TextAlignment.CENTER, Main.SECONDARY_SECOND);
+    private final Label posArrowLabel = buildLabel("posArrow_label", "First", Font.font(Main.TEXT_FONT, FontWeight.BOLD, Main.FONT_SIZE * 0.7), TextAlignment.CENTER, Main.FOUR_COLOR);
 
     // Content Arrow
     private final ArrowObjekt contentArrowObj;
@@ -59,14 +59,14 @@ public class ElementObjekt extends HBox {
 
         // Content
         Rectangle backgroundRectangle = buildRectangle("graphicObject_Background", Main.WINDOW_WIDTH * 0.08, Main.WINDOW_WIDTH * 0.08, Color.BLACK, false, Color.WHITE, 0);
-        contentLabel = buildLabel("graphicObject_Text", (CONTENT_ADDON + CONTENT_NOTHING + CONTENT_ADDON), Font.font(Main.TEXT_FONT, FontWeight.BOLD, Main.FONT_SIZE), TextAlignment.CENTER, Main.SECONDARY_SECOND);
+        contentLabel = buildLabel("graphicObject_Text", (CONTENT_ADDON + CONTENT_NOTHING + CONTENT_ADDON), Font.font(Main.TEXT_FONT, FontWeight.BOLD, Main.FONT_SIZE), TextAlignment.CENTER, Main.FOUR_COLOR);
 
         if (CONTENT_NOTHING.equals("N")) contentLabel.setText(CONTENT_ADDON + content + CONTENT_ADDON);
 
         contentRectanglePane = new StackPane(backgroundRectangle, contentLabel);
 
         // Current Arrow
-        Label currentArrowLabel = buildLabel("currentArrow_label", "Current", Font.font(Main.TEXT_FONT, FontWeight.BOLD, Main.FONT_SIZE * 0.7), TextAlignment.CENTER, Main.SECONDARY_SECOND);
+        Label currentArrowLabel = buildLabel("currentArrow_label", "Current", Font.font(Main.TEXT_FONT, FontWeight.BOLD, Main.FONT_SIZE * 0.7), TextAlignment.CENTER, Main.FOUR_COLOR);
         currentArrow.getChildren().add(currentArrowLabel);
 
         //Pos Arrow
@@ -80,7 +80,7 @@ public class ElementObjekt extends HBox {
         contentPane = new VBox(posArrow, contentRectanglePane, currentArrow);
 
         // Content Arrow
-        contentArrowObj = new ArrowObjekt("contentArrow", new Point2D(0, 0), Main.WINDOW_HEIGHT * 0.025, Main.WINDOW_WIDTH * 0.003, Main.WINDOW_HEIGHT * 0.015, Main.WINDOW_WIDTH * 0.0125, Main.PRIMARY_FIRST);
+        contentArrowObj = new ArrowObjekt("contentArrow", new Point2D(0, 0), Main.WINDOW_HEIGHT * 0.025, Main.WINDOW_WIDTH * 0.003, Main.WINDOW_HEIGHT * 0.015, Main.WINDOW_WIDTH * 0.0125, Main.THIRD_COLOR);
         contentArrowObj.setRotate(90);
 
         getChildren().addAll(contentPane, contentArrowObj);

@@ -27,7 +27,7 @@ public class ListView extends HBox {
      * This constructor applies the necessary styles to the list itself.
      */
     public ListView() {
-        setBackground(new Background(new BackgroundFill(Main.SECONDARY_FIRST, null, null)));
+        setBackground(new Background(new BackgroundFill(Main.SECOND_COLOR, null, null)));
 
         setSpacing(Main.WINDOW_WIDTH * 0.01);
 

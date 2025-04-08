@@ -19,7 +19,7 @@ import javafx.scene.text.TextAlignment;
 import java.util.List;
 import java.util.Objects;
 
-import static de.dennis.llvisualizer.Main.PRIMARY_SECOND;
+import static de.dennis.llvisualizer.Main.SECOND_COLOR;
 
 /**
  *  <h2>Utilities for Java and JavaFx to create graphical programs</h2>
@@ -229,8 +229,8 @@ public class JavaFXConstructorUtilities {
         b.setFont(font);
 
         // EXTRA
-        b.setTextFill(Main.SECONDARY_SECOND);
-        b.setBackground(new Background(new BackgroundFill(PRIMARY_SECOND, new CornerRadii(Main.WINDOW_WIDTH * 0.07), null)));
+        b.setTextFill(Main.FOUR_COLOR);
+        b.setBackground(new Background(new BackgroundFill(SECOND_COLOR, new CornerRadii(Main.WINDOW_WIDTH * 0.07), null)));
 
 
         return b;

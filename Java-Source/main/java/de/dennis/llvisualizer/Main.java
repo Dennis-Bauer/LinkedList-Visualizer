@@ -36,18 +36,18 @@ public class Main extends Application {
     public static final double FONT_SIZE = (WINDOW_HEIGHT + WINDOW_WIDTH) * 0.015;
 
     // Color Palette
-    public static final Color PRIMARY_FIRST = Color.web("#001f3f"); // Default: #001f3f
-    public static final Color PRIMARY_SECOND = Color.web("#3a6d8c");;
-    public static final Color SECONDARY_FIRST = Color.web("#6a9ab0");;
-    public static final Color SECONDARY_SECOND = Color.web("#ead8b1");;
+    public static final Color FIRST_COLOR = Color.web("#27374D"); // Default: #27374D
+    public static final Color SECOND_COLOR = Color.web("#526D82"); // Default: #526D82
+    public static final Color THIRD_COLOR = Color.web("#9DB2BF"); // Default: #9DB2BF
+    public static final Color FOUR_COLOR = Color.web("#DDE6ED"); // Default: #DDE6ED
 
     // Debug/Variables
     public static final int MAX_INPUT_LENGTH = 3;
-    public static final Color CURRENT_ARROW_COLOR = PRIMARY_FIRST; // Default: PRIMARY_SECOND
-    public static final Color FIRST_LAST_ARROW_COLOR = PRIMARY_FIRST; // Default: PRIMARY_SECOND
+    public static final Color CURRENT_ARROW_COLOR = THIRD_COLOR; // Default: THIRD_COLOR
+    public static final Color FIRST_LAST_ARROW_COLOR = THIRD_COLOR; // Default: THIRD_COLOR
     public static final Color CONTENT_COLOR_CURRENT = Color.GRAY; // Default: GRAY
-    public static final Color CONTENT_COLOR_GOT = SECONDARY_SECOND; // Default: SECONDARY_SECOND
-    public static final Color CONTENT_COLOR_NOTHING = SECONDARY_SECOND; // Default: SECONDARY_SECOND
+    public static final Color CONTENT_COLOR_GOT = FOUR_COLOR; // Default: FOUR_COLOR
+    public static final Color CONTENT_COLOR_NOTHING = FOUR_COLOR; // Default: FOUR_SECOND
 
     private static Scene primaryScene;
 
@@ -88,19 +88,19 @@ public class Main extends Application {
         VBox inputBoxPane = new VBox();
         inputBoxPane.setAlignment(Pos.CENTER);
 
-        Label inputBoxHeader = buildLabel("inputBox_Header", "Input", Font.font(TEXT_FONT, FontWeight.EXTRA_BOLD, FONT_SIZE * 1.5), TextAlignment.CENTER, SECONDARY_SECOND);
+        Label inputBoxHeader = buildLabel("inputBox_Header", "Input", Font.font(TEXT_FONT, FontWeight.EXTRA_BOLD, FONT_SIZE * 1.5), TextAlignment.CENTER, FOUR_COLOR);
         TextField inputBox = buildTextField("inputListWithElement", "int", WINDOW_WIDTH * 0.31, WINDOW_HEIGHT * 0.125);
         inputBox.setAlignment(Pos.CENTER);
         inputBox.setMaxWidth(WINDOW_WIDTH * 0.31);
         inputBox.setText("1");
-        inputBox.setStyle("-fx-text-fill: " + colorToRGB(SECONDARY_SECOND) + ";");
-        inputBox.setBackground(new Background(new BackgroundFill(PRIMARY_SECOND, null, null)));
+        inputBox.setStyle("-fx-text-fill: " + colorToRGB(FOUR_COLOR) + ";");
+        inputBox.setBackground(new Background(new BackgroundFill(SECOND_COLOR, null, null)));
 
         inputBoxPane.getChildren().addAll(inputBoxHeader, inputBox);
 
         // Create Output-Label
-        Rectangle outPutBackground = buildRectangle("outputLabel_Background", WINDOW_WIDTH * 0.32, WINDOW_HEIGHT * 0.08, SECONDARY_FIRST, true, null, 0);
-        Label outputLabel = buildLabel("outputLabel", "Output: ___", Font.font(TEXT_FONT, FontWeight.EXTRA_BOLD, FONT_SIZE * 1.5), TextAlignment.CENTER, SECONDARY_SECOND);
+        Rectangle outPutBackground = buildRectangle("outputLabel_Background", WINDOW_WIDTH * 0.32, WINDOW_HEIGHT * 0.08, SECOND_COLOR, true, null, 0);
+        Label outputLabel = buildLabel("outputLabel", "Output: ___", Font.font(TEXT_FONT, FontWeight.EXTRA_BOLD, FONT_SIZE * 1.5), TextAlignment.CENTER, FOUR_COLOR);
 
         outPutBackground.setArcHeight(WINDOW_WIDTH * 0.07);
         outPutBackground.setArcWidth(WINDOW_WIDTH * 0.07);
@@ -191,7 +191,7 @@ public class Main extends Application {
                 inputBoxPane
         );
 
-        root.setBackground(new Background(new BackgroundFill(PRIMARY_FIRST, null, null)));
+        root.setBackground(new Background(new BackgroundFill(FIRST_COLOR, null, null)));
 
         primaryScene.setRoot(root);
     }

@@ -35,7 +35,7 @@ public class StartScreen extends Pane {
      * and handles their event interactions.
      */
     public StartScreen() {
-        setBackground(new Background(new BackgroundFill(Main.PRIMARY_FIRST, null, null)));
+        setBackground(new Background(new BackgroundFill(Main.FIRST_COLOR, null, null)));
         Button creatListButton = buildButton("createListButton", "Erstelle List", BUTTON_WIDTH, Main.WINDOW_HEIGHT / 4, Font.font(Main.TEXT_FONT, FontWeight.BOLD, Main.FONT_SIZE * 2), BUTTON_X, Main.WINDOW_HEIGHT * 0.2);
         Button loadPreList = buildButton("loadPreListButton", "Lade Test List", BUTTON_WIDTH, Main.WINDOW_HEIGHT / 4, Font.font(Main.TEXT_FONT, FontWeight.BOLD, Main.FONT_SIZE * 2), BUTTON_X, Main.WINDOW_HEIGHT * 0.5);
 
