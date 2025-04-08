@@ -128,3 +128,16 @@ Returns `true` if the list is **empty**.
 This **Linked List Visualization** provides an intuitive way to understand and test the behavior of a **linked list**.
 
 # **Example Pictures (Beispiel Bilder)**
+
+## **Java**
+![image](https://github.com/user-attachments/assets/805dd278-1e66-4a81-9adf-19df29db4b36)
+![image](https://github.com/user-attachments/assets/81c5a9e9-dff0-461d-a340-103ce9a46a9c)
+![image](https://github.com/user-attachments/assets/9ba9b8b5-c0ea-49c8-b62d-4e2563b679c6)
+
+## **JavaScript**
+![image](https://github.com/user-attachments/assets/4e1c6cbb-4742-4586-9c1c-93b0d2693bff)
+![image](https://github.com/user-attachments/assets/43896600-8057-4389-9547-70739b3f1d65)
+![image](https://github.com/user-attachments/assets/d6641ddd-c06e-4985-8ebf-46d54d3c1113)
+
+
+
